@@ -83,9 +83,9 @@ func HandleGET(w http.ResponseWriter, r *http.Request) {
 		"description": description,
 	})
 
-	w.Write(b)
-
+	
 	w.WriteHeader(200)
+	w.Write(b)
 }
 
 func HandleList(w http.ResponseWriter, r *http.Request) {
@@ -117,9 +117,9 @@ func HandleList(w http.ResponseWriter, r *http.Request) {
 
 	b, _ := json.Marshal(list)
 
-	w.Write(b)
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
+	w.Write(b)
 }
 
 func HandleDelete(w http.ResponseWriter, r *http.Request) {

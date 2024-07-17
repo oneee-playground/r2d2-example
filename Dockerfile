@@ -4,10 +4,10 @@ WORKDIR /build
 
 COPY . .
 
-RUN GOOS=linux go build -o ./app .
+RUN CGO_ENABLED=0 GOOS=linux go build -o app .
 
 FROM alpine:latest
 
-COPY --from=build /build/app ./app
+COPY --from=build /build .
 
 ENTRYPOINT [ "./app" ]
